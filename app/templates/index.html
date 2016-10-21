@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <div class="row center">
+          <h5 class="header col s12 dark black-text">Yangi darslik: Ota-ona ila muomala</h5>
+        </div>
+        <div class="row center">
+          <a href="http://ilmnuri.net/dars/Abdulloh/Ota-ona_ila_munosabat_2016/" id="download-button" class="btn-large waves-effect waves-light">Eng so'nggi darslik</a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{{ url_for('static', filename='background1.jpg') }}" alt="Unsplashed background img 1"></div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><a href="/dars/Abdulloh"><i class="material-icons">library_music</i></a></h2>
+            <h5 class="center"><a href="/dars/Abdulloh">Abdulloh Domla</a></h5>
+
+            <p class="light">Abdulloh domlaning eng so'nggi va eng sara darsliklari faqat ilmnurida.</p>
+          </div>
+        </div>
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><a href="/dars/AbuNur"><i class="material-icons">library_music</i></a></h2>
+            <h5 class="center"><a href="/dars/AbuNur">Abunur Domla</a></h5>
+
+            <p class="light">Abunur domlaning hikmatli ma'ruzalari joy olgan.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><a href="/dars/Ayyubxon"><i class="material-icons">library_music</i></a></h2>
+            <h5 class="center"><a href="/dars/Ayyubxon">Ayyubxon Domla</a></h5>
+
+            <p class="light">Ayyubxon domlaning sermazmun o'gitlaridan dars oling.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light black-text">Bu yerda eng oxirgi va saralangan darslikardan baxramand bo'lasiz.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{{ url_for('static', filename='background2.jpg') }}"" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Biz bilan bog'lanish</h4>
+          <p class="left-align light">Lutfan sahifamizdagi axborotni boshqa o'rinlarda iqtibos qilganda "www.ilmnuri.com" sahifasidan olindi, deb ko'rsating. Savollaringiz bo'lsa, rasmiy ilmnuri@ilmnuri.com pochta orqali aloqaga chiqing yoki Telegramdagi <a href="http://telegram.me/ilmnuri_apps">kanalimizga</a> qo'shiling. Olloh sizdan rozi bo'lsin!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">Domlalarimiz haqqlariga doim duoda bo'ling azizlar.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{{ url_for('static', filename='background3.jpg') }}"" alt="Unsplashed background img 3"></div>
+  </div>
+
+{% endblock %}

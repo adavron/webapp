@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Audio ilmnuri.com</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='favicon.ico') }}" rel="shortcut icon">
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo"> 🎧  ilmnuri audio</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/dars/Abdulloh">Abdulloh Domla</a></li>
+        <li><a href="/dars/AbuNur">Abunur Domla</a></li>
+        <li><a href="/dars/Ayyubxon">Ayyubxon Domla</a></li>
+        <li><a href="http://ilmnuri.com/">ilmnuri.com</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="http://ilmnuri.com/">ilmnuri.com</a></li>
+        <li><a href="/dars/Abdulloh">Abdulloh Domla</a></li>
+        <li><a href="/dars/AbuNur">Abunur Domla</a></li>
+        <li><a href="/dars/Ayyubxon">Ayyubxon Domla</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+   {% block content %}{% endblock %}
+
+  </br></br>
+  </br></br>
+  <footer class="page-footer teal"> 
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Ilmnuri Audio haqida</h5>
+          <p class="grey-text text-lighten-4">Biz Abdulloh domlaning bir guruh talabalari, Abdulloh domla tashabbuslari bilan siz azizlarga zamon talablariga mos ravishda darsliklarni yetkazib berish uchun harakat qilyabmiz.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Google Android</h5>
+          <ul>
+            <li><a class="white-text" href="https://play.google.com/store/apps/details?id=com.ilmnuri.com">ilmnuri android app</a></li>
+            <li><a class="white-text" href="https://apkpure.com/ilmnuri/com.ilmnuri.com">ilmnuri.APK android formatda</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Apple iOS</h5>
+          <ul>
+            <li><a class="white-text" href="https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1097246436&mt=8">ilmnuri iOS app</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Mualliflar <a class="brown-text text-lighten-3" href="http://ilmnuri.com">Team Ilmnuri </a>&copy; 2016
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+  <script>
+   $('tr[data-href]').on("click", function() {
+    document.location = $(this).data('href');
+   });
+  </script>
+
+  </body>
+</html>
