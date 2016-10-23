@@ -11,11 +11,12 @@ import os
 import re
 from random import randint
 import sqlite3
+import datetime
 
 app = Flask(__name__)
 client = memcache.Client([('127.0.0.1', 11211)])
 database = '/usr/share/nginx/html/app/tokens.db'
-log_dir = '/var/log/nginx/'
+log_dir = '/var/log/ilmnuri'
 
 if not os.path.exists(log_dir):
     log_dir = '/tmp'
@@ -206,6 +207,27 @@ def api_ver2():
     log.info('Rendering the main albums page.')
     return jsonify({'albums': sorted(albums, key = stringSplitByNumbers)})
 
+
+@app.route('/sanoq/')
+def sanoq():
+    l = []
+    dt = []
+    tt = []
+    an = []
+    ap = []
+    with open('/opt/count.log') as f:
+        for i in f:
+            s = i.split(',')
+            s[-1] = s[-1].strip()
+            l.append(s)
+            dt.append(s[0])
+            tt.append(int(s[1]))
+            an.append(int(s[2]))
+            ap.append(int(s[3]))
+
+    log.debug(l)
+
+    return render_template('sanoq.html', all=l, dt=dt[-10:], tt=tt[-10:], an=an[-10:], ap=ap[-10:])
 
 if __name__ == '__main__':
     app.run(port=8080, host='0.0.0.0', debug=True)

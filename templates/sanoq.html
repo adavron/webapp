@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Audio ilmnuri.com</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/static/favicon.ico" rel="shortcut icon">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+
+    <script type="text/javascript">
+    $(function () {
+        $('#chartcont').highcharts({
+            title: {
+                text: 'Kundalik yuklangan darsliklar xaritasi - 10 kunlik',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Source: Ilmnuri',
+                x: -20
+            },
+            yAxis: {
+                title: {
+                    text: 'Yuklangan Darsliklar'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: 'ta'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            xAxis: {
+                categories: {{ dt|safe }}
+            },
+            series: [{
+                name: 'Umumiy',
+                data: {{ tt|safe }}
+            }, {
+                name: 'Android',
+                data: {{ an|safe }}
+            }, {
+                name: 'Apple',
+                data: {{ ap|safe }}
+            }]
+        });
+    });
+    </script>
+</head>
+<body>
+    <div id="chartcont" style="min-width: 310px; width: 100%; height: 400px; margin: 0 auto"></div>
+        
+         <div class="container">
+           <br><br>
+          <div class="panel-heading"><b>Kundalik yuklangan darsliklar hisobi</b></div>
+          <table class="striped">
+           <thead>
+            <tr>
+                 <td> Sana </td>
+                 <td> Apple </td>
+                 <td> Android </td>
+                 <td> Umumiy </td>
+            </tr>
+           </thead>
+              <tbody>
+              {% for item in all %}
+                 <tr>
+                  <td> {{ item[0] }} </td>
+                  <td> {{ item[3] }} </td>
+                  <td> {{ item[2] }} </td>
+                  <td> {{ item[1] }} </td>
+                 </tr>
+              {% endfor %}
+               </tbody>
+          </table>
+             
+     </div>
+</body>
+</html>
