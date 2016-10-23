@@ -16,12 +16,12 @@ import datetime
 app = Flask(__name__)
 client = memcache.Client([('127.0.0.1', 11211)])
 database = '/usr/share/nginx/html/app/tokens.db'
-log_dir = '/var/log/ilmnuri'
+log_dir = '/var/log/nginx'
 
 if not os.path.exists(log_dir):
     log_dir = '/tmp'
 
-logging.basicConfig(filename='{0}/ilmnuri.log'.format(log_dir),
+logging.basicConfig(filename='{0}/log_ilmnuri'.format(log_dir),
                     format='%(asctime)s  %(funcName)s: %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
