@@ -8,7 +8,6 @@ import memcache
 import logging
 from glob import glob
 import os
-import re
 from random import randint
 import sqlite3
 import datetime
@@ -26,12 +25,6 @@ logging.basicConfig(filename='{0}/log_ilmnuri'.format(log_dir),
                     datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
 log = logging.getLogger(__name__)
-
-
-def stringSplitByNumbers(x):
-    r = re.compile('(\d+)')
-    l = r.split(x)
-    return [int(y) if y.isdigit() else y for y in l]
 
 
 @app.route('/')
@@ -205,7 +198,7 @@ def api_ver2():
             }
             albums.append(output)
     log.info('Rendering the main albums page.')
-    return jsonify({'albums': sorted(albums, key = stringSplitByNumbers)})
+    return jsonify({'albums': sorted(albums)})
 
 
 @app.route('/sanoq/')
