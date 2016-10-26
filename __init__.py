@@ -227,7 +227,7 @@ def sanoq():
 
     log.debug(l)
 
-    return render_template('sanoq.html', all=l, dt=dt[-10:], tt=tt[-10:], an=an[-10:], ap=ap[-10:])
+    return render_template('sanoq.html', all=l, dt=dt[-15:], tt=tt[-15:], an=an[-15:], ap=ap[-15:])
 
 if __name__ == '__main__':
     app.run(port=8080, host='0.0.0.0', debug=True)
