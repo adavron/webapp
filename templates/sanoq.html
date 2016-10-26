@@ -56,7 +56,16 @@
 </head>
 <body>
     <div id="chartcont" style="min-width: 310px; width: 100%; height: 400px; margin: 0 auto"></div>
-        
+
+    <div>
+        <table>
+            <tr>
+                {% for flag in flags %}
+                <td> <img src=/static/flags/{{ flag[0] + _16.PNG }} /> {{ flag[1] }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
          <div class="container">
            <br><br>
           <div class="panel-heading"><b>Kundalik yuklangan darsliklar hisobi</b></div>

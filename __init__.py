@@ -34,7 +34,6 @@ def index():
 
 @app.route('/dars/<teacher>/')
 def first(teacher):
-
     list_items = glob('{0}/*'.format(teacher))
     new_list = []
     for item in list_items:
@@ -50,7 +49,6 @@ def first(teacher):
 
 @app.route('/dars/<teacher>/<album>/')
 def category(teacher, album):
-
     mobile = None
     user = request.headers.get('User-Agent')
     if 'Mobile' in user:
@@ -82,7 +80,6 @@ def insert_token(argument):
 
 @app.route('/api/v1.0/albums/', methods=['GET'])
 def get_tasks():
-
     albums = []
 
     if not client.get('album'):
@@ -109,7 +106,6 @@ def get_tasks():
 
 @app.route('/api/v1.0/albums/<teacher>/', methods=['GET'])
 def get_teacher(teacher):
-
     albums = []
 
     if not client.get('album'):
@@ -138,14 +134,13 @@ def get_teacher(teacher):
 
 @app.route('/api/ios/albums/<teacher>/', methods=['GET'])
 def ios_teacher(teacher):
-    
     if not client.get('album'):
         log.info('Dictionary empty, executing the script.')
         os.system('/usr/share/nginx/html/get_full_list.py')
         dictionary = client.get('album')
     else:
         dictionary = client.get('album')
-        
+
     albums = []
 
     for key, value in dictionary.items():
@@ -157,8 +152,9 @@ def ios_teacher(teacher):
                     'category': key,
                     'album': k,
                     'items': sorted([{'name': x,
-                               'url': 'http://ilmnuri.net/{0}/'
-                                      '{1}/{2}'.format(key, k, x)} for x in v])
+                                      'url': 'http://ilmnuri.net/{0}/'
+                                             '{1}/{2}'.format(key, k, x)} for x
+                                     in v])
                 }
                 albums.append(output)
                 i += 1
@@ -176,7 +172,6 @@ def token(uuid):
 
 @app.route('/api/v2.0/albums/', methods=['GET'])
 def api_ver2():
-
     albums = []
 
     if not client.get('album2'):
@@ -202,6 +197,13 @@ def api_ver2():
 
 @app.route('/sanoq/')
 def sanoq():
+    if not client.get('flags'):
+        log.info('flags empty, executing the script.')
+        os.system('/usr/share/nginx/html/get_full_list.py')
+        flags = client.get('flags')
+    else:
+        flags = client.get('flags')
+
     l = []
     dt = []
     tt = []
@@ -222,7 +224,9 @@ def sanoq():
 
     log.debug(l)
 
-    return render_template('sanoq.html', all=l, dt=dt[-15:], tt=tt[-15:], an=an[-15:], ap=ap[-15:])
+    return render_template('sanoq.html', all=l, dt=dt[-15:],
+                           tt=tt[-15:], an=an[-15:], ap=ap[-15:], flags=flags)
+
 
 if __name__ == '__main__':
     app.run(port=8080, host='0.0.0.0', debug=True)
