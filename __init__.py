@@ -199,7 +199,7 @@ def api_ver2():
 def sanoq():
     if not client.get('flags'):
         log.info('flags empty, executing the script.')
-        os.system('/usr/share/nginx/html/get_full_list.py')
+        os.system('/usr/share/nginx/html/get_flags.py')
         flags = client.get('flags')
     else:
         flags = client.get('flags')
