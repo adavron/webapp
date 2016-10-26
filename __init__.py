@@ -10,7 +10,6 @@ from glob import glob
 import os
 from random import randint
 import sqlite3
-import datetime
 
 app = Flask(__name__)
 client = memcache.Client([('127.0.0.1', 11211)])
@@ -212,11 +211,14 @@ def sanoq():
         for i in f:
             s = i.split(',')
             s[-1] = s[-1].strip()
+            s[1] = int(s[1])
+            s[2] = int(s[2])
+            s[3] = int(s[3])
             l.append(s)
             dt.append(s[0])
-            tt.append(int(s[1]))
-            an.append(int(s[2]))
-            ap.append(int(s[3]))
+            tt.append(s[1])
+            an.append(s[2])
+            ap.append(s[3])
 
     log.debug(l)
 

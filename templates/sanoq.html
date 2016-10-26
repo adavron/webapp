@@ -17,7 +17,7 @@
     $(function () {
         $('#chartcont').highcharts({
             title: {
-                text: 'Kundalik yuklangan darsliklar xaritasi - 10 kunlik',
+                text: 'Kundalik yuklangan darsliklar xaritasi - 15 kunlik',
                 x: -20 //center
             },
             subtitle: {
@@ -66,15 +66,18 @@
                  <td> Sana </td>
                  <td> Apple </td>
                  <td> Android </td>
-                 <td> Umumiy (mobile + web) </td>
+                 <td> ilmnuri.net </td>
+                 <td> Umumiy </td>
             </tr>
            </thead>
               <tbody>
               {% for item in all %}
+              {% set web = (item[2] + item[3]) - item[1] %}
                  <tr>
                   <td> {{ item[0] }} </td>
                   <td> {{ item[3] }} </td>
                   <td> {{ item[2] }} </td>
+                     <td> {{ web }} </td>
                   <td> {{ item[1] }} </td>
                  </tr>
               {% endfor %}
