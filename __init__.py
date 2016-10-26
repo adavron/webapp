@@ -10,6 +10,7 @@ from glob import glob
 import os
 from random import randint
 import sqlite3
+from datetime import datetime
 
 app = Flask(__name__)
 client = memcache.Client([('127.0.0.1', 11211)])
@@ -197,6 +198,8 @@ def api_ver2():
 
 @app.route('/sanoq/')
 def sanoq():
+
+    date = datetime.now().strftime('%b-%d-%Y')
     if not client.get('flags'):
         log.info('flags empty, executing the script.')
         os.system('/usr/share/nginx/html/get_flags.py')
@@ -225,7 +228,8 @@ def sanoq():
     log.debug(l)
 
     return render_template('sanoq.html', all=l, dt=dt[-15:],
-                           tt=tt[-15:], an=an[-15:], ap=ap[-15:], flags=flags)
+                           tt=tt[-15:], an=an[-15:], ap=ap[-15:],
+                           flags=flags, date=date)
 
 
 if __name__ == '__main__':

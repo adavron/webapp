@@ -58,41 +58,35 @@
     <div id="chartcont" style="min-width: 310px; width: 100%; height: 400px; margin: 0 auto"></div>
 
     <div>
-        <table>
+       <div class="center"><b>{{ date }} kunidagi bayroqlar soni</b></div>
+        <table class="responsive-table bordered highlight" style="margin-left:10px">
             <tr>
                 {% for flag in flags %}
-                <td> <img src=/static/flags/{{ flag[0] }}_16.PNG /> {{ flag[1] }}</td>
+                <td><img src=/static/flags/{{ flag[0] }}_16.PNG /> {{ flag[1] }}</td>
                 {% endfor %}
             </tr>
         </table>
     </div>
          <div class="container">
            <br><br>
-          <div class="panel-heading"><b>Kundalik yuklangan darsliklar hisobi</b></div>
+          <div class="panel-heading"><b>Kundalik yuklangan darsliklar soni</b></div>
           <table class="striped">
            <thead>
             <tr>
                  <td> Sana </td>
-                 <td> Apple </td>
-                 <td> Android </td>
-                 <td> ilmnuri.net </td>
                  <td> Umumiy </td>
             </tr>
            </thead>
               <tbody>
               {% for item in all %}
-              {% set web = (item[2] + item[3]) - item[1] %}
                  <tr>
                   <td> {{ item[0] }} </td>
-                  <td> {{ item[3] }} </td>
-                  <td> {{ item[2] }} </td>
-                     <td> {{ web }} </td>
                   <td> {{ item[1] }} </td>
                  </tr>
               {% endfor %}
                </tbody>
           </table>
-             
+
      </div>
 </body>
 </html>
