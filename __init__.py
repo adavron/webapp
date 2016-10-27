@@ -227,7 +227,7 @@ def sanoq():
 
     log.debug(l)
 
-    return render_template('sanoq.html', all=l, dt=dt[-15:],
+    return render_template('sanoq.html', all=reversed(l), dt=dt[-15:],
                            tt=tt[-15:], an=an[-15:], ap=ap[-15:],
                            flags=flags, date=date)
 
