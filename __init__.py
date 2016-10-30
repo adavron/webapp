@@ -198,6 +198,17 @@ def api_ver2():
 
 @app.route('/sanoq/')
 def sanoq():
+    con = sqlite3.connect('/usr/share/nginx/html/stats.db')
+    with con:
+        cur = con.cursor()
+        cur.execute('select * from stats;')
+        data = cur.fetchall()
+
+    date_names = []
+    counts = []
+    for i in data:
+        date_names.append(i[0])
+        counts.append(i[1])
 
     date = datetime.now().strftime('%b-%d-%Y')
     if not client.get('flags'):
@@ -207,29 +218,8 @@ def sanoq():
     else:
         flags = client.get('flags')
 
-    l = []
-    dt = []
-    tt = []
-    an = []
-    ap = []
-    with open('/opt/count.log') as f:
-        for i in f:
-            s = i.split(',')
-            s[-1] = s[-1].strip()
-            s[1] = int(s[1])
-            s[2] = int(s[2])
-            s[3] = int(s[3])
-            l.append(s)
-            dt.append(s[0])
-            tt.append(s[1])
-            an.append(s[2])
-            ap.append(s[3])
-
-    log.debug(l)
-
-    return render_template('sanoq.html', all=reversed(l), dt=dt[-15:],
-                           tt=tt[-15:], an=an[-15:], ap=ap[-15:],
-                           flags=flags, date=date)
+    return render_template('sanoq.html', all=reversed(data), dt=date_names[-15:],
+                           tt=counts[-15:], flags=flags, date=date)
 
 
 if __name__ == '__main__':
