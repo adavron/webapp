@@ -207,7 +207,7 @@ def sanoq():
     date_names = []
     counts = []
     for i in data:
-        date_names.append(i[0])
+        date_names.append(str(i[0]))
         counts.append(i[1])
 
     date = datetime.now().strftime('%b-%d-%Y')
@@ -218,8 +218,9 @@ def sanoq():
     else:
         flags = client.get('flags')
 
-    return render_template('sanoq.html', all=reversed(data), dt=date_names[-15:],
-                           tt=counts[-15:], flags=flags, date=date)
+    return render_template('sanoq.html', all=reversed(data),
+                           dt=date_names[-15:], tt=counts[-15:],
+                           flags=flags, date=date)
 
 
 if __name__ == '__main__':
