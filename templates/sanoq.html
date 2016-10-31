@@ -59,13 +59,14 @@
     <br><br>
     <div class="container bordered">
         <div class="left">
-           <b>{{ date }} kunidagi yuklangan darslar soni</b>
+           <b>01/11/2016 dan buyon yuklangan darsliklar</b>
             <table class="responsive-table bordered highlight striped left">
                <thead>
                 <tr>
                      <td> # </td>
                      <td> Bayroq </td>
-                     <td> Soni </td>
+                     <td> Bugun </td>
+                    <td> Umumiy </td>
                 </tr>
                </thead>
                 <tbody>
@@ -75,6 +76,7 @@
                         <td>{{ count }}</td>
                         <td><img src=/static/flags/{{ flag[0] }}.png /></td>
                         <td> {{ flag[1] }}</td>
+                        <td> {{ flag[2] }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

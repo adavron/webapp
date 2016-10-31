@@ -3,11 +3,13 @@
 ilmnuri audio website
 Api of ilmnuri
 """
+
 from flask import Flask, render_template, jsonify, request
 import memcache
 import logging
 from glob import glob
 import os
+import operator
 from random import randint
 import sqlite3
 from datetime import datetime
@@ -210,17 +212,21 @@ def sanoq():
         date_names.append(str(i[0]))
         counts.append(i[1])
 
-    date = datetime.now().strftime('%b-%d-%Y')
-    if not client.get('flags'):
-        log.info('flags empty, executing the script.')
-        os.system('/usr/share/nginx/html/get_flags.py')
-        flags = client.get('flags')
-    else:
-        flags = client.get('flags')
+    con = sqlite3.connect('/usr/share/nginx/html/flags.db')
+    with con:
+        cur = con.cursor()
+        cur.execute('select * from flags;')
+        f = cur.fetchall()
+
+    clean_list = []
+    for i in f:
+        clean_list.append((str(i[1].rstrip()), i[2], i[3]))
+    clean_list.sort(key=operator.itemgetter(2))
+    clean_list.reverse()
 
     return render_template('sanoq.html', all=reversed(data),
-                           dt=date_names[-15:], tt=counts[-15:],
-                           flags=flags, date=date)
+                           dt=date_names[-20:], tt=counts[-20:],
+                           flags=clean_list[:30])
 
 
 if __name__ == '__main__':
