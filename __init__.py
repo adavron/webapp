@@ -12,7 +12,6 @@ import os
 import operator
 from random import randint
 import sqlite3
-from datetime import datetime
 
 app = Flask(__name__)
 client = memcache.Client([('127.0.0.1', 11211)])
@@ -31,7 +30,7 @@ log = logging.getLogger(__name__)
 
 @app.route('/')
 def index():
-    log.info('index page rendered.')
+    log.debug('index page rendered.')
     return render_template("index.html")
 
 
@@ -43,7 +42,7 @@ def first(teacher):
         s = item.split('/')
         new_list.append(s[1])
 
-    log.info('/dars/{0} page rendered'.format(teacher))
+    log.debug('/dars/{0} page rendered'.format(teacher))
 
     return render_template('dars.html',
                            new_list=sorted(new_list),
@@ -64,7 +63,7 @@ def category(teacher, album):
         s = item.split('/')
         new_list.append((s[2], sz))
 
-    log.info('/dars/{0}/{1} page rendered'.format(teacher, album))
+    log.debug('/dars/{0}/{1} page rendered'.format(teacher, album))
 
     return render_template('track.html',
                            new_list=sorted(new_list),
@@ -103,7 +102,7 @@ def get_tasks():
             }
             albums.append(output)
             i += 1
-    log.info('Rendering the main albums page.')
+    log.debug('Rendering the main albums page.')
     return jsonify({'albums': sorted(albums)})
 
 
@@ -131,7 +130,7 @@ def get_teacher(teacher):
                 albums.append(output)
                 i += 1
 
-    log.info('Rendering the category {0} page.'.format(teacher))
+    log.debug('Rendering the category {0} page.'.format(teacher))
     return jsonify({'albums': sorted(albums)})
 
 
@@ -162,7 +161,7 @@ def ios_teacher(teacher):
                 albums.append(output)
                 i += 1
 
-    log.info('Rendering the category {0} page on ios.'.format(teacher))
+    log.debug('Rendering the category {0} page on ios.'.format(teacher))
     return jsonify({'albums': sorted(albums)})
 
 
@@ -170,6 +169,7 @@ def ios_teacher(teacher):
 def token(uuid):
     token_id = request.json
     insert_token(token_id['data'])
+    log.debug(token_id['data'])
     return jsonify({'uuid': uuid})
 
 
@@ -194,7 +194,7 @@ def api_ver2():
                                   'song_size': x[1]} for x in v])
             }
             albums.append(output)
-    log.info('Rendering the main albums page.')
+    log.debug('Rendering the main albums page.')
     return jsonify({'albums': sorted(albums)})
 
 
@@ -205,6 +205,7 @@ def sanoq():
         cur = con.cursor()
         cur.execute('select * from stats;')
         data = cur.fetchall()
+        log.debug(data)
 
     date_names = []
     counts = []
@@ -217,12 +218,14 @@ def sanoq():
         cur = con.cursor()
         cur.execute('select * from flags;')
         f = cur.fetchall()
+        log.debug(f)
 
     clean_list = []
     for i in f:
         clean_list.append((str(i[1].rstrip()), i[2], i[3]))
     clean_list.sort(key=operator.itemgetter(2))
     clean_list.reverse()
+    log.debug(clean_list)
 
     return render_template('sanoq.html', all=reversed(data),
                            dt=date_names[-20:], tt=counts[-20:],
