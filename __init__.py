@@ -227,9 +227,11 @@ def sanoq():
     clean_list.reverse()
     log.debug(clean_list)
 
+    total = sum(counts)
+
     return render_template('sanoq.html', all=reversed(data),
                            dt=date_names[-20:], tt=counts[-20:],
-                           flags=clean_list[:30])
+                           flags=clean_list[:30], total = total)
 
 
 if __name__ == '__main__':
