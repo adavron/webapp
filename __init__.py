@@ -198,6 +198,11 @@ def api_ver2():
     return jsonify({'albums': sorted(albums)})
 
 
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
+
 @app.route('/sanoq/')
 def sanoq():
     con = sqlite3.connect('/usr/share/nginx/html/stats.db')
