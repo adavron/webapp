@@ -4,23 +4,35 @@
   <div class="container">
     <table class="bordered highlight">
 	<thead>
+
 	  <tr>
               <th data-field="id">Domla</th>
               <th data-field="name">Darslik</th>
-          </tr>
-        </thead>
+
+      </tr>
+
+    </thead>
 
         <tbody>
-         {% for i in new_list %}
-          <tr data-href="{{ i }}" style="cursor:pointer;">
+
+        {% for i in new_list %}
+
+        <tr data-href="{{ i }}" style="cursor:pointer;">
+
              <td><i class="material-icons">queue_music</i>{{ teacher }} Domla</td>
              <td>{{ i.replace('_',' ') }}</td>
              <td><i class="material-icons">chevron_right</i></td>
-          </tr>
-          {% endfor %}
+
+        </tr>
+
+        {% endfor %}
+
         </tbody>
+
      </table>
 
+
+      <div class="section"></div>
       <div class="divider"></div>
 
   </div>
