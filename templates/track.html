@@ -3,15 +3,18 @@
 
   <div class="container">
     <table class="bordered highlight">
-	<thead>
-	  <tr>
-             {% if not mobile %}
-              <th data-field="id">Yukla</th>
-             {% endif %}
-              <th data-field="id">Darslik</th>
-              <th data-field="name">Player</th>
-              <th data-field="name">Hajmi</th>
+
+        <thead>
+          <tr>
+                 {% if not mobile %}
+                  <th data-field="id">Yukla</th>
+                 {% endif %}
+                  <th data-field="id">Darslik</th>
+                  <th data-field="name">Player</th>
+                  <th data-field="name">Hajmi</th>
+
           </tr>
+
         </thead>
 
         <tbody>
@@ -27,7 +30,8 @@
           {% endfor %}
         </tbody>
       </table>
-      <br>
+
+      <div class="divider section"></div>
 
       <div id="disqus_thread"></div>
 
