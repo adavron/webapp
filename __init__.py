@@ -208,6 +208,11 @@ def privacy():
     return render_template('privacy.html')
 
 
+@app.route('/analytics/')
+def analytics():
+    return render_template('analytics.html')
+
+
 @app.route('/sanoq/')
 def sanoq():
     con = sqlite3.connect('/usr/share/nginx/html/stats.db')
