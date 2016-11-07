@@ -213,6 +213,11 @@ def analytics():
     return render_template('analytics.html')
 
 
+@app.route('/ilmnuri/<arg>/')
+def pages(arg):
+    return render_template('{0}.html'.format(arg))
+
+
 @app.route('/sanoq/')
 def sanoq():
     con = sqlite3.connect('/usr/share/nginx/html/stats.db')
