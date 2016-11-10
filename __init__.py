@@ -249,7 +249,7 @@ def sanoq():
     log.debug(clean_list)
 
     total = "{:,}".format(sum(counts))
-    total_flags = sum(clean_list)
+    total_flags = len(clean_list)
 
     return render_template('sanoq.html', all=reversed(data),
                            dt=date_names[-20:], tt=counts[-20:],
