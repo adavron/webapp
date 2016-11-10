@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
 ilmnuri audio website
-Api of ilmnuri
+Api & webapp of ilmnuri
 """
 
 from flask import Flask, render_template, jsonify, request
