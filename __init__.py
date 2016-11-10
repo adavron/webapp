@@ -224,7 +224,8 @@ def sanoq():
     with con:
         cur = con.cursor()
         cur.execute('select * from stats;')
-        data = cur.fetchall()
+        raw_data = cur.fetchall()
+        data = raw_data[-35:]
         log.debug(data)
 
     date_names = []
