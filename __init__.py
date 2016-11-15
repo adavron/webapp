@@ -225,7 +225,7 @@ def sanoq():
         cur = con.cursor()
         cur.execute('select * from stats;')
         raw_data = cur.fetchall()
-        data = raw_data[-36:]
+        data = raw_data
         log.debug(data)
 
     date_names = []
@@ -247,14 +247,11 @@ def sanoq():
     clean_list.sort(key=operator.itemgetter(2))
     clean_list.reverse()
     log.debug(clean_list)
+    total = '{:,}'.format(sum(counts))
 
-    total = "{:,}".format(sum(counts))
-    total_flags = len(clean_list)
-
-    return render_template('sanoq.html', all=reversed(data),
+    return render_template('sanoq.html', all=reversed(data[-36:]),
                            dt=date_names[-20:], tt=counts[-20:],
-                           flags=clean_list[:30], total = total,
-                           flag_count = total_flags)
+                           flags=clean_list[:30], total=total)
 
 
 if __name__ == '__main__':
