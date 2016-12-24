@@ -6,9 +6,7 @@
 
         <thead>
           <tr>
-                 {% if not mobile %}
                   <th data-field="id">Yukla</th>
-                 {% endif %}
                   <th data-field="id">Darslik</th>
                   <th data-field="name">Player</th>
                   <th data-field="name">Hajmi</th>
@@ -20,9 +18,7 @@
         <tbody>
          {% for i in new_list %}
           <tr>
-             {% if not mobile %}
              <td><a href="http://ilmnuri.net/{{ teacher }}/{{ album }}/{{ i[0] }}" download id="download"><i class="material-icons">file_download</i></a></td>
-             {% endif %}
              <td><i class="material-icons">music_note</i>{{ i[0].replace('_',' ').replace('.mp3', '') }}</td>
              <td><audio controls preload="none"><source src="http://ilmnuri.net/{{ teacher }}/{{ album }}/{{ i[0] }}" type="audio/mp3"></audio></td>
              <td>{{ i[1] }}</td>
