@@ -24,13 +24,24 @@
     ga('send', 'pageview');
     </script>
     <!-- End Google Analytics -->
-
 </head>
 
 <body>
 
-  <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn" href="/">Tez kunlarda yangi darslik: Sahobai Kiromlar</a>
+  <button data-target="modal1" class="btn modal-trigger">Tez kunlarda yangi darslik: Sahobai Kiromlar</button>
+  <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Sahobai Kiromlar 2017</h4>
+        <p> Assalomu alaykum, azizlar!
+
+Ramazon 2016 yildagi "Bu ikkisi teng bo'lurmu" deb nomlangan darslar silsilasining eng so'nggisi 28-darsi yuklandi. Keyingi haftadan boshlab Abdulloh domlaning eng yangi "Sahobai Kiromlar" deb nomlangan darslar silsilasini taqdim qila boshlaymiz in sha Alloh.
+</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Kutib qolamiz yangi darsni...</a>
+      </div>
+    </div>
 
   <nav class="teal" role="navigation">
     <div class="nav-wrapper container">
@@ -141,6 +152,13 @@
     loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
 
     olark.identify('3942-355-10-9101');</script>
+
+    <script>
+    $(document).ready(function() {
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+    });
+    </script>
 
   </body>
 
