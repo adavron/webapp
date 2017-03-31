@@ -43,7 +43,7 @@ def first(teacher):
         new_list.append(s[1])
 
     log.debug('/dars/{0} page rendered'.format(teacher))
-    new_list = new_list.sort(key=lambda x: x[-4:], reverse=True)
+    new_list.sort(key=lambda x: x[-4:], reverse=True)
 
     return render_template('dars.html',
                            new_list=new_list,
@@ -104,7 +104,9 @@ def get_tasks():
             albums.append(output)
             i += 1
     log.debug('Rendering the main albums page.')
-    return jsonify({'albums': sorted(albums)})
+    albums.sort(key=lambda x: x['album'][-4:], reverse=True)
+
+    return jsonify({'albums': albums})
 
 
 @app.route('/api/v1.0/albums/<teacher>/', methods=['GET'])
@@ -132,7 +134,9 @@ def get_teacher(teacher):
                 i += 1
 
     log.debug('Rendering the category {0} page.'.format(teacher))
-    return jsonify({'albums': sorted(albums)})
+    albums.sort(key=lambda x: x['album'][-4:], reverse=True)
+
+    return jsonify({'albums': albums})
 
 
 @app.route('/api/ios/albums/<teacher>/', methods=['GET'])
@@ -163,7 +167,9 @@ def ios_teacher(teacher):
                 i += 1
 
     log.debug('Rendering the category {0} page on ios.'.format(teacher))
-    return jsonify({'albums': sorted(albums)})
+    albums.sort(key=lambda x: x['album'][-4:], reverse=True)
+
+    return jsonify({'albums': albums})
 
 
 @app.route('/tokens/<uuid>', methods=['POST'])
@@ -196,7 +202,9 @@ def api_ver2():
             }
             albums.append(output)
     log.debug('Rendering the main albums page.')
-    return jsonify({'albums': sorted(albums)})
+    albums.sort(key=lambda x: x['album'][-4:], reverse=True)
+
+    return jsonify({'albums': albums})
 
 
 @app.route('/about/')
