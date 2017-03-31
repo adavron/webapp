@@ -9,7 +9,6 @@ import memcache
 import logging
 from glob import glob
 import os
-import re
 import operator
 from random import randint
 import sqlite3
@@ -29,13 +28,6 @@ logging.basicConfig(filename='{0}/log_ilmnuri'.format(log_dir),
 log = logging.getLogger(__name__)
 
 
-def sorted_nicely(l):
-    """ Sort the given iterable in the way that humans expect."""
-    convert = lambda text: int(text) if text.isdigit() else text
-    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
-    return sorted(l, key=alphanum_key, reverse=True)
-
-
 @app.route('/')
 def index():
     log.debug('index page rendered.')
@@ -53,7 +45,7 @@ def first(teacher):
     log.debug('/dars/{0} page rendered'.format(teacher))
 
     return render_template('dars.html',
-                           new_list=sorted_nicely(new_list),
+                           new_list=sorted(new_list),
                            teacher=teacher)
 
 
@@ -99,6 +91,13 @@ def get_tasks():
     else:
         dictionary = client.get('album')
 
+    dictionary['Abdulloh']['0_Appni_yangi_versiyasiga_yangilang'] = [
+        'Bu_appni_versiyasi_eski.mp3',
+        'iltimos_yangilab_oling.mp3',
+        'Play_marketda_oxirgi_3.3_verisya_bor.mp3',
+        'Yaqinda_bu_versiya_ishlamay_qolishi_mumkin.mp3']
+    dictionary['Abdulloh'].pop('1_Yangi_Ramazon_2016', None)
+
     for key, value in dictionary.items():
         i = 1
         for k, v in value.items():
@@ -111,7 +110,7 @@ def get_tasks():
             albums.append(output)
             i += 1
     log.debug('Rendering the main albums page.')
-    return jsonify({'albums': sorted_nicely(albums)})
+    return jsonify({'albums': sorted(albums)})
 
 
 @app.route('/api/v1.0/albums/<teacher>/', methods=['GET'])
@@ -124,6 +123,13 @@ def get_teacher(teacher):
         dictionary = client.get('album')
     else:
         dictionary = client.get('album')
+
+    dictionary['Abdulloh']['0_Appni_yangi_versiyasiga_yangilang'] = [
+        'Bu_appni_versiyasi_eski.mp3',
+        'iltimos_yangilab_oling.mp3',
+        'Play_marketda_oxirgi_3.3_verisya_bor.mp3',
+        'Yaqinda_bu_versiya_ishlamay_qolishi_mumkin.mp3']
+    dictionary['Abdulloh'].pop('1_Yangi_Ramazon_2016', None)
 
     for key, value in dictionary.items():
         if key == teacher:
@@ -139,7 +145,7 @@ def get_teacher(teacher):
                 i += 1
 
     log.debug('Rendering the category {0} page.'.format(teacher))
-    return jsonify({'albums': sorted_nicely(albums)})
+    return jsonify({'albums': sorted(albums)})
 
 
 @app.route('/api/ios/albums/<teacher>/', methods=['GET'])
