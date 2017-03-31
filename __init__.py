@@ -43,9 +43,10 @@ def first(teacher):
         new_list.append(s[1])
 
     log.debug('/dars/{0} page rendered'.format(teacher))
+    new_list = new_list.sort(key=lambda x: x[-4:], reverse=True)
 
     return render_template('dars.html',
-                           new_list=sorted(new_list),
+                           new_list=new_list,
                            teacher=teacher)
 
 
@@ -91,13 +92,6 @@ def get_tasks():
     else:
         dictionary = client.get('album')
 
-    dictionary['Abdulloh']['0_Appni_yangi_versiyasiga_yangilang'] = [
-        'Bu_appni_versiyasi_eski.mp3',
-        'iltimos_yangilab_oling.mp3',
-        'Play_marketda_oxirgi_3.3_verisya_bor.mp3',
-        'Yaqinda_bu_versiya_ishlamay_qolishi_mumkin.mp3']
-    dictionary['Abdulloh'].pop('1_Yangi_Ramazon_2016', None)
-
     for key, value in dictionary.items():
         i = 1
         for k, v in value.items():
@@ -123,13 +117,6 @@ def get_teacher(teacher):
         dictionary = client.get('album')
     else:
         dictionary = client.get('album')
-
-    dictionary['Abdulloh']['0_Appni_yangi_versiyasiga_yangilang'] = [
-        'Bu_appni_versiyasi_eski.mp3',
-        'iltimos_yangilab_oling.mp3',
-        'Play_marketda_oxirgi_3.3_verisya_bor.mp3',
-        'Yaqinda_bu_versiya_ishlamay_qolishi_mumkin.mp3']
-    dictionary['Abdulloh'].pop('1_Yangi_Ramazon_2016', None)
 
     for key, value in dictionary.items():
         if key == teacher:
