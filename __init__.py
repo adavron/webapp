@@ -195,6 +195,7 @@ def api_ver2():
         for k, v in value.items():
             output = {
                 'category': key,
+                'image': 'http://ilmnuri.net/images/{0}.jpeg'.format(k),
                 'album': k,
                 'items': sorted([{'song_atitle': x[0],
                                   'song_id': randint(10000, 99999),
